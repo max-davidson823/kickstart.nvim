@@ -36,7 +36,7 @@ return {
         style = '#806d9c',
       },
       blank = {
-        enable = true,
+        enable = false,
         chars = { '․' },
         style = {
           vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID 'Whitespace'), 'fg', 'gui'),
