@@ -4,7 +4,6 @@ vim.g.maplocalleader = ' '
 
 -- Enable Nerd Font support
 vim.g.have_nerd_font = true
-
 -- Display options
 vim.o.number = true -- Show absolute line numbers
 vim.o.relativenumber = true -- Show relative line numbers
@@ -100,13 +99,14 @@ end
 ---@type vim.Option
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
-
--- [[ Configure and install plugins ]]
 require('lazy').setup({
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
+  'NMAC427/guess-indent.nvim',
   { import = 'custom.plugins' },
 }, {
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
   ui = {
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',

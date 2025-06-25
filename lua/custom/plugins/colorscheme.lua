@@ -1,17 +1,28 @@
-return { -- You can easily change to a different colorscheme.
-  -- Change the name of the colorscheme plugin below, and then
-  -- change the command in the config to whatever the name of that colorscheme is.
-  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  'folke/tokyonight.nvim',
-  priority = 1000, -- Make sure to load this before all the other start plugins.
-  config = function()
-    ---@diagnostic disable-next-line: missing-fields
-    require('tokyonight').setup {
-      styles = {
-        comments = { italic = false }, -- Disable italics in comments
-      },
-    }
-    -- Load the colorscheme here.
-    vim.cmd.colorscheme 'tokyonight-night'
-  end,
+return {
+  {
+    'projekt0n/github-nvim-theme',
+    name = 'github-theme',
+    priority = 1000,
+    config = function()
+      require('github-theme').setup {
+        -- Optional: config options here
+      }
+      -- Comment out the colorscheme line if not the default
+      vim.cmd 'colorscheme github_dark_default'
+    end,
+  },
+
+  {
+    'folke/tokyonight.nvim',
+    priority = 1000,
+    config = function()
+      require('tokyonight').setup {
+        styles = {
+          comments = { italic = false },
+        },
+      }
+      -- Set this as the default colorscheme
+      -- vim.cmd.colorscheme 'tokyonight-night'
+    end,
+  },
 }
