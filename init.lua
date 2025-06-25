@@ -62,12 +62,51 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Barbar Buffer Keymaps
+local opts = { noremap = true, silent = true }
+
+-- Navigation
+vim.keymap.set('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
+vim.keymap.set('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
+
+-- Re-order
+vim.keymap.set('n', '<A-,>', '<Cmd>BufferMovePrevious<CR>', opts)
+vim.keymap.set('n', '<A-.>', '<Cmd>BufferMoveNext<CR>', opts)
+
+-- Goto buffer in position...
+vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
+vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
+vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
+vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
+vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
+vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
+vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
+vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
+vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+
+-- Pin/unpin
+vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+
+-- Close/restore
+vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+vim.keymap.set('n', '<A-s-c>', '<Cmd>BufferRestore<CR>', opts)
+
+-- Buffer pick modes
+vim.keymap.set('n', '<C-p>', '<Cmd>BufferPickDelete<CR>', opts)
+
+-- Sorting
+vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
+vim.keymap.set('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', opts)
+vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
+vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
+vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })

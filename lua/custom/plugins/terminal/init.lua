@@ -20,9 +20,9 @@ return {
 
     vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerminal<cr>')
 
-    -- Highlight groups for GitHub Dark colors
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#0d1117', fg = '#3FB950' })
-    vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#0d1117', fg = '#3FB950' })
+    -- Define custom highlight groups (used only by this plugin)
+    vim.api.nvim_set_hl(0, 'CustomNormalFloat', { bg = '#0d1117', fg = '#3FB950' })
+    vim.api.nvim_set_hl(0, 'CustomFloatBorder', { bg = '#0d1117', fg = '#3FB950' })
 
     local function create_floating_window(opts)
       opts = opts or {}
@@ -49,13 +49,14 @@ return {
         border = 'double',
         title = '  Terminal ',
         title_pos = 'center',
-        noautocmd = true,
+        -- noautocmd = true,
       }
 
       local win = vim.api.nvim_open_win(buf, true, win_config)
 
-      vim.api.nvim_set_option_value('winhl', 'Normal:NormalFloat,FloatBorder:FloatBorder', { win = win })
+      vim.api.nvim_set_option_value('winhl', 'Normal:CustomNormalFloat,FloatBorder:CustomFloatBorder', { win = win })
       vim.api.nvim_set_option_value('winblend', 0, { win = win })
+
       return { buf = buf, win = win }
     end
 
