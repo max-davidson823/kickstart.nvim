@@ -7,9 +7,5 @@ return {
   },
   config = function()
     require('flutter-tools').setup {}
-
-    vim.keymap.set('n', '<leader>tf', function()
-      vim.cmd 'Telescope flutter commands'
-    end, { desc = 'Flutter Commands' })
   end,
 }

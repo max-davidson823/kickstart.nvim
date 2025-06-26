@@ -11,6 +11,12 @@ return {
   lazy = false,
   config = function()
     -- Key mappings
+    vim.keymap.set('t', '<C-t>', function()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', false)
+      if vim.api.nvim_win_is_valid(state.floating.win) then
+        vim.api.nvim_win_hide(state.floating.win)
+      end
+    end)
     vim.keymap.set('t', '<esc><esc>', function()
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', false)
       if vim.api.nvim_win_is_valid(state.floating.win) then
@@ -18,7 +24,7 @@ return {
       end
     end)
 
-    vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerminal<cr>')
+    vim.keymap.set('n', '<C-t>', '<cmd>ToggleTerminal<cr>')
 
     -- Define custom highlight groups (used only by this plugin)
     vim.api.nvim_set_hl(0, 'CustomNormalFloat', { bg = '#0d1117', fg = '#3FB950' })
@@ -54,7 +60,7 @@ return {
 
       local win = vim.api.nvim_open_win(buf, true, win_config)
 
-      vim.api.nvim_set_option_value('winhl', 'Normal:CustomNormalFloat,FloatBorder:CustomFloatBorder', { win = win })
+      vim.api.nvim_set_option_value('winhl', 'FloatBorder:CustomFloatBorder', { win = win })
       vim.api.nvim_set_option_value('winblend', 0, { win = win })
 
       return { buf = buf, win = win }
