@@ -25,13 +25,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- [[ Configure Telescope ]]
     require('telescope').setup {
-      -- You can put your default mappings / updates / etc. in here
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
-      -- pickers = {}
+      pickers = {
+        -- find_files = {
+        --   hidden = true,
+        -- },
+      },
       require('telescope').load_extension 'flutter',
       extensions = {
         ['ui-select'] = {
@@ -70,6 +68,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
         prompt_title = 'Live Grep in Open Files',
       }
     end, { desc = '[S]earch [/] in Open Files' })
+
+    vim.keymap.set('n', '<leader>sc', function()
+      builtin.find_files {
+        cwd = vim.fn.expand '~/.config',
+        hidden = true,
+      }
+    end, { desc = '[S]earch [C]onfig File' })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>sn', function()
